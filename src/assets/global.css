@@ -1,0 +1,30 @@
+html {
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Open Sans", "Roboto", "Helvetica Neue", "Arial", sans-serif;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.shadow-1 {
+  box-shadow: 0.5px 0.5px 3.6px rgba(0, 0, 0, 0.035),
+    1.3px 1.3px 10px rgba(0, 0, 0, 0.05), 3px 3px 24.1px rgba(0, 0, 0, 0.065),
+    10px 10px 80px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-2 {
+  box-shadow: 0.7px 0.7px 2.2px rgba(0, 0, 0, 0.02),
+    1.6px 1.6px 5.3px rgba(0, 0, 0, 0.028), 3px 3px 10px rgba(0, 0, 0, 0.035),
+    5.4px 5.4px 17.9px rgba(0, 0, 0, 0.042),
+    10px 10px 33.4px rgba(0, 0, 0, 0.05), 24px 24px 80px rgba(0, 0, 0, 0.07);
+}
