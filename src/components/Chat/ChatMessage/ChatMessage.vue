@@ -1,10 +1,18 @@
 <script setup>
+// A message in the chat.
 import { inject } from "vue";
 import ChatBubble from "./ChatBubble.vue";
-import Timestamp from "./Timestamp.vue";
+import Timestamp from "../../Timestamp.vue";
 
 const props = defineProps({
-  message: Object,
+  message: {
+    type: Object,
+    default: {
+      userId: null,
+      direction: null,
+      timestamp: null,
+    },
+  },
 });
 
 // Inject the provided userId value into this component
@@ -16,7 +24,7 @@ const direction = props.message.senderId === userId ? "right" : "left";
 
 <template>
   <ChatBubble :direction="direction">
-    <slot />
+    {{ message.content }}
     <Timestamp :date="props.message.timestamp" />
   </ChatBubble>
 </template>

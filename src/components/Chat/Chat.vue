@@ -1,51 +1,60 @@
 <script setup>
-import { ref, provide } from "vue";
+// Main chat component
+import { provide, ref } from "vue";
 import CenterOnPage from "../generic/containers/CenterOnPage.vue";
-import ChatMessage from "./ChatMessage.vue";
+import ChatMessage from "./ChatMessage/ChatMessage.vue";
+import Compose from "./Compose.vue";
+import useAutoScrollToBottom from "../../hooks/useAutoScrollToBottom";
+import existingMessages from "./messages";
 
+// Create a reactive variable from existing messages. Similar to useState.
+const messages = ref(existingMessages);
+
+/**
+ * Adds a message to the chat
+ * @param {String} content Message content
+ */
+function addMessage(content) {
+  const message = {
+    content,
+    senderId: userId,
+    timestamp: new Date(),
+  };
+  messages.value = [...messages.value, message];
+}
+
+// Use a behavior that automatically scrolls the message list to the bottom whenever its content changes.
+const messageListElement = ref(null); // Create a ref that we attach to a DOM element. Similar to useRef.
+useAutoScrollToBottom(messageListElement); // Using a "hook".
+
+// Provide the active user's id to all components in this tree. Similar to providing a React Context.
 const userId = 1111;
-const messages = ref([
-  {
-    content: "Hello this is tech support",
-    senderId: 1234,
-    timestamp: new Date("2022-01-26T11:37:22.947Z"),
-  },
-  {
-    content: "I have sent my password to you",
-    senderId: 1111,
-    timestamp: new Date("2022-01-26T11:37:42.947Z"),
-  },
-  {
-    content: "It is hunter2",
-    senderId: 1111,
-    timestamp: new Date("2022-01-26T11:37:47.947Z"),
-  },
-  {
-    content: "Sir I only see *******",
-    senderId: 1234,
-    timestamp: new Date("2022-01-26T11:38:22.947Z"),
-  },
-]);
-
-// Provide the userId value to all components in this tree
 provide("userId", userId);
 </script>
 
 <template>
   <CenterOnPage>
     <div class="chat shadow-2">
-      <ChatMessage v-for="message in messages" :message="message">
-        {{ message.content }}
-      </ChatMessage>
+      <div ref="messageListElement" class="message-list">
+        <!-- Iterate over elements with v-for -->
+        <ChatMessage
+          v-for="message in messages"
+          :key="`${message.senderId}:${message.timestamp}`"
+          :message="message"
+        />
+      </div>
+
+      <Compose @send="addMessage" />
     </div>
   </CenterOnPage>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .chat {
   width: 100%;
   max-width: 500px;
   min-height: 50vh;
+  max-height: 600px;
   margin: 3rem 1rem;
   padding: 2rem;
   border-radius: 7px;
@@ -62,6 +71,16 @@ provide("userId", userId);
 
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 1rem;
+
+  .message-list {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 1rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
 }
 </style>
