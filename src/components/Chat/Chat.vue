@@ -7,6 +7,9 @@ import Compose from "./Compose.vue";
 import useAutoScrollToBottom from "../../compositionFunctions/useAutoScrollToBottom";
 import existingMessages from "./messages";
 
+// The active user's id.
+const USER_ID = 1111;
+
 // Create a reactive variable from existing messages. Similar to useState.
 const messages = ref(existingMessages);
 
@@ -14,11 +17,11 @@ const messages = ref(existingMessages);
  * Adds a message to the chat
  * @param {String} content Message content
  */
-function addMessage(content, type) {
+function addMessage(content) {
   const message = {
     content,
-    type,
-    senderId: userId,
+    type: "text", // Hint: you may want to parameterize this
+    senderId: USER_ID,
     timestamp: new Date(),
   };
   messages.value = [...messages.value, message];
@@ -29,8 +32,7 @@ const messageListElement = ref(null); // Create a ref that we attach to a DOM el
 useAutoScrollToBottom(messageListElement); // Using a "hook".
 
 // Provide the active user's id to all components in this tree. Similar to providing a React Context.
-const userId = 1111;
-provide("userId", userId);
+provide("userId", USER_ID);
 </script>
 
 <template>
