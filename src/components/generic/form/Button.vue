@@ -1,5 +1,5 @@
 <script setup>
-import useIcons from "./useIcons";
+import useIcons from "../../../compositionFunctions/useIcons";
 
 const emit = defineEmits(["click"]);
 const props = defineProps({
@@ -14,7 +14,7 @@ const props = defineProps({
 });
 
 // Get the required icons
-const icons = useIcons(props.icon);
+const icons = useIcons();
 
 /**
  * Handles click events on this button
@@ -47,4 +47,8 @@ function onClick(event) {
 
   &:focus-visible
     outline: 2px solid #C093AE
+
+  img
+    width: 24px
+    height: 24px
 </style>

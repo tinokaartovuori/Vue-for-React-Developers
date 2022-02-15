@@ -14,9 +14,10 @@ const messages = ref(existingMessages);
  * Adds a message to the chat
  * @param {String} content Message content
  */
-function addMessage(content) {
+function addMessage(content, type) {
   const message = {
     content,
+    type,
     senderId: userId,
     timestamp: new Date(),
   };
@@ -81,6 +82,7 @@ provide("userId", userId);
     gap: 1rem;
     overflow-y: auto;
     overflow-x: hidden;
+    padding-bottom: 0.5rem;
   }
 }
 </style>

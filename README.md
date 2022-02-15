@@ -84,6 +84,8 @@ Wire the state hooks to the Compose component (value and emit).
 ### Extend the chat app
 
 Create an emoji selector thingy.
+Send emoji messages.
+Render emoji messages.
 
 
 ## Resources

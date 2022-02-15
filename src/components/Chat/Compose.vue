@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import Input from "../generic/form/Input.vue";
 import Button from "../generic/form/Button.vue";
+import EmojiSelector from "./EmojiSelector/EmojiSelector.vue";
 
 // Store the text input value
 const text = ref("");
@@ -18,30 +19,47 @@ const onChange = (newValue) => {
 const emit = defineEmits(["send"]);
 
 /**
- * Sends the message.
+ * Sends a text message.
  */
 function send() {
-  emit("send", text.value);
+  emit("send", text.value, "text");
   text.value = "";
+}
+
+/**
+ * Sends an emoji message.
+ */
+function sendEmoji(name) {
+  emit("send", name, "emoji");
 }
 </script>
 
 <template>
   <div class="compose">
-    <Input
-      :value="text"
-      placeholder="Type a message"
-      @change="onChange"
-      @keydown.enter="send"
-    />
-    <Button icon="send" @click="send" />
+    <EmojiSelector @send="sendEmoji" />
+
+    <div class="message-row">
+      <Input
+        :value="text"
+        placeholder="Type a message"
+        @change="onChange"
+        @keydown.enter="send"
+      />
+
+      <Button icon="send" @click="send" />
+    </div>
   </div>
 </template>
 
-<style lang="sass" scoped>
-.compose
-  display: flex
-  justify-content: space-between
-  align-items: center
-  gap: 0.5rem
+<style scoped>
+.message-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+/* This targets a nested component with scoped styles*/
+.compose >>> .emoji-selector {
+  margin-bottom: 0.5rem;
+}
 </style>
