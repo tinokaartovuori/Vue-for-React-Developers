@@ -4,7 +4,7 @@ import { provide, ref } from "vue";
 import CenterOnPage from "../generic/containers/CenterOnPage.vue";
 import ChatMessage from "./ChatMessage/ChatMessage.vue";
 import Compose from "./Compose.vue";
-import useAutoScrollToBottom from "../../hooks/useAutoScrollToBottom";
+import useAutoScrollToBottom from "../../compositionFunctions/useAutoScrollToBottom";
 import existingMessages from "./messages";
 
 // Create a reactive variable from existing messages. Similar to useState.
