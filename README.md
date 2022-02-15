@@ -1,4 +1,5 @@
 # Vue Chat Application
+
 > Vue for React Developers JS / TS Guild Event
 
 Hi and welcome! This repository contains a chat application created with the Vue 3 Composition API.
@@ -10,10 +11,9 @@ Hi and welcome! This repository contains a chat application created with the Vue
 - [Project Structure](#project-structure)
   - [Components](#components)
 - [Exercise](#exercise)
-  - [Complete the Chat App](#complete-the-chat-app)
-  - [Extend the Chat App](#extend-the-chat-app)
+  - [Complete the Chat App](#exercise-1-complete-the-chat-app)
+  - [Extend the Chat App](#exercise-2-extend-the-chat-app)
 - [Resources](#resources)
-
 
 ---
 
@@ -39,7 +39,7 @@ The app should now be running at [localhost:3000](http://localhost:3000])
 
 ### IDE Setup
 
-The recommended IDE setup is [VSCode](https://code.visualstudio.com/) and the  [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) extension.
+The recommended IDE setup is [VSCode](https://code.visualstudio.com/) and the [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) extension.
 
 This should allow for precise auto-formatting and most of the good stuff you want when developing.
 
@@ -78,12 +78,36 @@ Components have been written as single file components using the `<script setup>
 
 To flesh out your Vue skills, an exercise has been prepared. The first part will task you with wiring the pieces of an existing application together. The second part will have you create a new component for the same application.
 
-### Complete the chat app
+> If you get stuck at any point, search the project for the string _"Hint:"_. These point to critical points where functionality could be added.
 
-Get the user id by injecting it.
-Wire the state hooks to the Compose component (value and emit).
+### Exercise 1: Complete the chat app
 
-### Extend the Chat App
+To start, switch to the correct branch:
+
+```bash
+git switch exercise-1
+```
+
+The application mostly works but we can't send any messages. Let's fix that by doing the following things.
+
+#### **1. Fix the Compose component**
+
+The `Compose.vue` component has a button that should send the typed message, but it doesn't. This is because the `<Button />` component doesn't have any functionality attached to it. Fix this by:
+
+1. Making clicks on the button call the `send()` function.
+2. Making the `send()` function emit a `send` event with the text input's value as an argument.
+
+#### **2. Fix the Chat component**
+
+With the `Compose` component fixed, the `Chat` component should now be receiving `send` events from it. However, nothing is registered to handle these events.
+
+Create a function that mutates the reactive `messages` variable. It should append new messages to the existing array of messages. Make sure to attach this function to the `Compose` component's `send` event.
+
+You should now have a working, albeit very one-sided, chat app!
+
+> **Bonus:** See if you could send messages simply by pressing the enter key in the text input field.
+
+### Exercise 2: Extend the Chat App
 
 The second part of the exercise is to extend the chat app with an "emoji picker".
 
@@ -97,7 +121,7 @@ git switch exercise-2
 
 Basic messaging functionality has already been implemented in this branch. Your job is to accomplish the following three goals.
 
-If you get stuck at any point, search the project for the string _"Hint:"_. These point to critical points where functionality could be added.
+> Reminder: If you get stuck at any point, search the project for the string _"Hint:"_. These point to critical points where functionality could be added.
 
 #### **1. Create an emoji picker component.**
 
