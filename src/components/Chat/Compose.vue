@@ -3,7 +3,7 @@ import { ref } from "vue";
 import Input from "../generic/form/Input.vue";
 import Button from "../generic/form/Button.vue";
 
-// Store the text input value
+// Store the text input value. This is a reactive 'state' variable.
 const text = ref("");
 
 /**
@@ -21,24 +21,21 @@ const emit = defineEmits(["send"]);
  * Sends a text message.
  */
 function send() {
-  emit("send", text.value); // Hint: You can provide more parameters to 'emit'.
-  text.value = "";
+  // Hint: Call 'emit' with the correct arguments.
+  //       Finally, clear the text input.
 }
 </script>
 
 <template>
   <div class="compose">
-    <!-- An emoji selector could go here, for example. The choice is yours! -->
-
     <div class="message-row">
-      <Input
-        :value="text"
-        placeholder="Type a message"
-        @change="onChange"
-        @keydown.enter="send"
-      />
+      <!-- Hint: See if you could send the message by pressing the enter key in the text field.
+                 https://vuejs.org/guide/essentials/event-handling.html#key-modifiers
+      -->
+      <Input :value="text" placeholder="Type a message" @change="onChange" />
 
-      <Button icon="send" @click="send" />
+      <!-- Hint: Call the 'send()' function when the button emits a 'click' event. -->
+      <Button icon="send" />
     </div>
   </div>
 </template>
