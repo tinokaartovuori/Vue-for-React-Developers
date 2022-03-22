@@ -4,6 +4,8 @@
 
 Hi and welcome! This repository contains a chat application created with the Vue 3 Composition API.
 
+[Workshop slides](https://xd.adobe.com/view/4a2bc58a-b5cf-45b3-ab5d-771d7ec9dd83-1f78/)
+
 ## Contents
 
 - [Get started](#getting-started)
