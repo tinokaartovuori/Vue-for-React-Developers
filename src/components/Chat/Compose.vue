@@ -51,7 +51,7 @@ function send() {
   gap: 0.5rem;
 }
 /* This targets a nested component with scoped styles*/
-.compose >>> .emoji-selector {
+.compose:deep(.emoji-selector) {
   margin-bottom: 0.5rem;
 }
 </style>
