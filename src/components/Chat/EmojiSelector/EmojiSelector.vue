@@ -31,7 +31,7 @@ function sendEmoji(name) {
   display: inline-block;
 }
 
-.emoji-selector >>> button.button {
+.emoji-selector:deep(button.button) {
   box-shadow: none;
   padding: 0.25rem;
 }
