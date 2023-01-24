@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import Input from "../generic/form/Input.vue";
 import Button from "../generic/form/Button.vue";
+import EmojiPicker from "./EmojiPicker.vue";
 
 // Store the text input value
 const text = ref("");
@@ -20,16 +21,17 @@ const emit = defineEmits(["send"]);
 /**
  * Sends a text message.
  */
-function send() {
-  emit("send", text.value); // Hint: You can provide more parameters to 'emit'.
-  text.value = "";
+function send({ type, content }) {
+  emit("send", { type: type, content: content }); // Hint: You can provide more parameters to 'emit'.
+  if (type === "text") {
+    text.value = "";
+  }
 }
 </script>
 
 <template>
   <div class="compose">
-    <!-- An emoji selector could go here, for example. The choice is yours! -->
-
+    <EmojiPicker @send="send"></EmojiPicker>
     <div class="message-row">
       <Input
         :value="text"
@@ -37,8 +39,7 @@ function send() {
         @change="onChange"
         @keydown.enter="send"
       />
-
-      <Button icon="send" @click="send" />
+      <Button icon="send" @click="send({ type: 'text', content: text })" />
     </div>
   </div>
 </template>

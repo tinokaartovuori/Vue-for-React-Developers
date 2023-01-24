@@ -17,10 +17,12 @@ const messages = ref(existingMessages);
  * Adds a message to the chat
  * @param {String} content Message content
  */
-function addMessage(content) {
+function addMessage({ type, content }) {
+  console.log(" 🎛️ - file: Chat.vue:21 - addMessage - type", type);
+  console.log(" 🎛️ - file: Chat.vue:21 - addMessage - content", content);
   const message = {
     content,
-    type: "text", // Hint: you may want to parameterize this
+    type: type,
     senderId: USER_ID,
     timestamp: new Date(),
   };
@@ -46,7 +48,6 @@ provide("userId", USER_ID);
           :message="message"
         />
       </div>
-
       <Compose @send="addMessage" />
     </div>
   </CenterOnPage>
