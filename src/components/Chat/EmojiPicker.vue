@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="emoji-picker">
     <Button
       v-for="(path, emoji) in icons"
       :icon="emoji"
@@ -25,3 +25,13 @@ function buttonPressed(emoji) {
   emit("send", { type: "emoji", content: emoji });
 }
 </script>
+
+<style lang="sass" scoped>
+.emoji-picker
+  background-color: #fbfaf8
+  width: fit-content
+  border-radius: 99rem
+  padding: 0 0.5rem
+  .button
+    box-shadow: none
+</style>
