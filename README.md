@@ -1,5 +1,9 @@
-My completed excercises are in the brances excercise-1 and excercise-2
-I was already familiar with Vue.js so this was a piece of cake!
+# University Lecture Exam - Vue for React Developers
+> Completed excercises are in the brances excercise-1 and excercise-2
+
+> I was already familiar with Vue.js so this was a piece of cake!
+
+> [Here is a little video showing how this works](https://imgur.com/a/1vUPa8G)
 
 # Vue Chat Application
 
