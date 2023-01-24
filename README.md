@@ -3,7 +3,7 @@
 
 > I was already familiar with Vue.js so this was a piece of cake!
 
-> [Here is a little video showing how this works](https://imgur.com/a/1vUPa8G)
+> [Here is a little video showing how this works](https://imgur.com/a/8KOySte)
 
 # Vue Chat Application
 
